@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diego Penilla - Reading Device Project</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevCard Bootstrap 4 Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- FontAwesome JS -->
+    <script defer src="assets/fontawesome/js/all.js"></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+
+</head>
+
+<body>
+
+    <div w3-include-html="assets/templates/header.html"></div>
+
+    <div class="main-wrapper">
+        <section class="cta-section theme-bg-light py-5">
+            <div class="container single-col-max-width">
+                <h2 class="heading text-center">Vorlesegerät</h2>
+                <div class="project-intro text-center">
+                    <p class="mb-0 lead">A reading device for the visually impaired</p>
+                </div>
+
+            </div>
+            <!--//container-->
+        </section>
+        <section class="project px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="project-meta media flex-column flex-md-row p-4 theme-bg-light">
+                    <img class="project-thumb mb-3 mb-md-0 mr-md-5 rounded d-none d-md-inline-block" src="assets/images/vorleser_citylab.png" alt="">
+                    <div class="media-body">
+                        <div class="client-info">
+                            <h3 class="client-name font-weight-bold mb-4">Vorlesergerät</h3>
+                            <ul class="client-meta list-unstyled">
+                                <li class="mb-2"><i class="fas fa-industry fa-fw mr-2"></i><strong>Industry:</strong> Tech / Health</li>
+                                <li class="mb-2"><i class="fas fa-users fa-fw mr-2"></i><strong>Team Size:</strong> 5</li>
+                                <li class="mb-2"><strong><i class="fas fa-link fa-fw mr-2"></i>Website:</strong> <a class="theme-link" href="https://vorleser.info/?page_id=75&lang=en">https://vorleser.info/</a></li>
+
+                            </ul>
+                            <div class="client-bio mb-4">Commercial reading devices for the elderly or visually impaired cost thousands of dollars. To help address this problem at the Health Hackademy from <a href="https://be-able.info/de/be-able/">be-able</a>, Vorlesegerät was made.</div>
+                            <h4 class="subheading mb-3">How it works</h4>
+                            <ul class="mb-0">
+                                <li class="mb-2">A user places a document below the camera and presses the center button</li>
+                                <li class="mb-2">The Vorlesegerät captures an image and extracts text from it</li>
+                                <li class="mb-2">The extracted text is converted into speech using Pico Text-to-Speech</li>
+                                <li class="mb-2">The audio file is played and can be controlled by the arrows</li>
+                                <li class="mb-2">Pressing the center button twice takes the user to the device memory, where arrows serve to navigate through extracted text files and the center button to reproduce them as audio.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--//media-body-->
+                </div>
+                <!--//project-meta-->
+                <div class="project-sections py-5">
+                    <!--//project-section-->
+                    <!--//project-section-->
+
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title">How it works</h3>
+                        <p>Kindly accompanied by Rose Marie the prototype was tested and improved based on her feedback. </p>
+                        <div class="row mt-5">
+                            <div class="col-12 col-lg-6 mb-5">
+                                <img class="img-fluid rounded" src="assets/images/prototype.png" alt="image">
+                            </div>
+                            <div class="col-12 col-lg-6 mb-5">
+                                <img class="img-fluid rounded" src="assets/images/rs.png" alt="image">
+                            </div>
+                        </div>
+
+                        <p>The device is able to take a picture and extract the text without requiring an internet connection using Tesseract, an open source OCR technology. 
+                             With the current hardware, a Raspberry-pi 3b+ it takes about 30 seconds to process a single page. To solve this problem, a much faster internet based OCR solution was implemented using Google Vision API.</p>
+
+                    </div>
+                    <!--//project-section-->
+
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">The Tools</h3>
+
+                        <div class="metrics mb-4">
+                            <div class="row">
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Optical Character Recognition</div>
+                                        <div class="metric-desc">
+                                            <p>Text extracted from the images using:</p>
+                                            <li>Tesseract OCR (offline)</li>
+                                            <li>Google Vision API (online)</li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Text to Speech</div>
+                                        <div class="metric-desc">
+                                            <p>Text converted into an audio file using:</p>
+                                            <li>Pico2wave</li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Hardware</div>
+                                    
+                                        <div class="metric-desc">
+                                            <li>Raspberry-pi 3b+</li>
+                                            <li>Microphone</li> 
+                                            <li>Speakers</li>
+                                            <li>Camera</li>
+                                            <li>Buttons</li>
+                                            <li>Case</li>
+                                      </div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Overall Cost</div>
+                                        <div class="metric-data mb-2">200 <span class="unit">euro</span></div>
+                                        <div class="metric-desc">Way more affordable than other commercially available reading devices</div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                            </div>
+                            <!--//row-->
+                        </div>
+                        <!--//metrics-->
+
+                        <p>Check these websites for more information about the project:
+                            <li>Vorlesergerät goes to <a href="https://19.re-publica.com/en/session/open-health-hackademy-vorleser-briefempfangerinnen-wenig-augenlicht">Re-publica:19</a></li>
+                            <li><a href="https://matchmymaker.de/mmm_projects/vorlesegeraet/">Match My Maker</a> project site</li>
+                        </p>
+
+                    </div>
+                    <!--//project-section
+
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Client Testimonial</h3>
+                    </div>
+                  
+                    <div class="client-quote">
+                        <div class="quote-holder">
+                            <blockquote class="quote-content">
+                                Simon is a brilliant software engineer! Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.
+                            </blockquote>
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    
+                        <div class="source-holder">
+                            <div class="source-profile">
+                                <img src="assets/images/vor" alt="image" />
+                            </div>
+                            <div class="meta">
+                                <div class="name">James Lee</div>
+                                <div class="info">Product Manager, Amazon</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </section>
+
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container single-col-max-width">
+                <h2 class="title">Want help with your project?</h2>
+                <p>Let me know! I really enjoy working on new things.</p>
+                <div class="text-center"><a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Contact Me</a></div>
+            </div>
+            <!--//container-->
+        </section>
+        <!--//promo-section-->
+
+        <footer class="footer text-center py-4">
+            <!-- Example #4 - external ❤-icon -->
+        <link rel="stylesheet" type="text/css" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+            <small>Hosted with <i class="icon ion-heart"></i> by Github</small>
+        </footer>
+        
+    </div>
+    <!--//main-wrapper-->
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger config-panel-hide text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item">
+                    <a data-style="assets/css/theme-1.css" href="#"></a>
+                </li>
+                <li class="theme-2  list-inline-item">
+                    <a data-style="assets/css/theme-2.css" href="#"></a>
+                </li>
+                <li class="theme-3  list-inline-item">
+                    <a data-style="assets/css/theme-3.css" href="#"></a>
+                </li>
+                <li class="theme-4  list-inline-item">
+                    <a data-style="assets/css/theme-4.css" href="#"></a>
+                </li>
+                <li class="theme-5  list-inline-item">
+                    <a data-style="assets/css/theme-5.css" href="#"></a>
+                </li>
+                <li class="theme-6  list-inline-item">
+                    <a data-style="assets/css/theme-6.css" href="#"></a>
+                </li>
+                <li class="theme-7  list-inline-item">
+                    <a data-style="assets/css/theme-7.css" href="#"></a>
+                </li>
+                <li class="theme-8  list-inline-item">
+                    <a data-style="assets/css/theme-8.css" href="#"></a>
+                </li>
+                <li class="theme-9  list-inline-item">
+                    <a data-style="assets/css/theme-9.css" href="#"></a>
+                </li>
+                <li class="theme-10  list-inline-item">
+                    <a data-style="assets/css/theme-10.css" href="#"></a>
+                </li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <!--//panel-inner-->
+    </div>
+    <!--//configure-panel-->
+
+    <!-- Javascript -->
+    <script src="assets/plugins/jquery-3.4.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Dark Mode -->
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
+    <!--Templating-->
+    <script src="assets/js/include.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diego Penilla - Relbi AR Project</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevCard Bootstrap 4 Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- FontAwesome JS -->
+    <script defer src="assets/fontawesome/js/all.js"></script>
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+
+</head>
+
+<body>
+
+    <div w3-include-html="assets/templates/header.html"></div>
+
+    <div class="main-wrapper">
+        <section class="cta-section theme-bg-light py-5">
+            <div class="container single-col-max-width">
+                <h2 class="heading text-center">Relbi AR</h2>
+                <div class="project-intro text-center">
+                    <p class="mb-0 lead">Visualizing traffic data in mixed reality </p>
+                </div>
+
+            </div>
+            <!--//container-->
+        </section>
+        <section class="project px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="project-meta media flex-column flex-md-row p-4 theme-bg-light">
+                    <img class="project-thumb mb-3 mb-md-0 mr-md-5 rounded d-none d-md-inline-block" src="assets/images/relbiapp.png" alt="">
+                    <div class="media-body">
+                        <div class="client-info">
+                            <h3 class="client-name font-weight-bold mb-4">Relbi AR</h3>
+                            <ul class="client-meta list-unstyled">
+                                <li class="mb-2"><i class="fas fa-industry fa-fw mr-2"></i><strong>Industry:</strong> Transport / Tech</li>
+                                <li class="mb-2"><i class="fas fa-users fa-fw mr-2"></i><strong>Team Size:</strong> 4</li>
+                                <li class="mb-2"><strong><i class="fas fa-link fa-fw mr-2"></i>Website:</strong> <a href="https://devpost.com/software/jello" class="theme-link">www.devpost.com/jello</a></li>
+
+                            </ul>
+                            <div class="client-bio mb-4">For the BVG Competition using the mixed reality toolkit on the Unity Engine 3D and a python based web server deployed on EC2. We created a mixed reality prototype app for the Hololens that displays information from BVG mobility partners after scanning station-specific QR codes.</div>
+                            <h4 class="subheading mb-3">What it does</h4>
+                            <ul class="mb-0">
+                                <li class="mb-2">A user wearing the Hololens scans a QR code (specific to a BVG station). </li>
+                                <li class="mb-2">With the QR code, traffic data from different Jelbi Partners is processed by the web server.</li>
+                                <li class="mb-2">The web server sends the data back to the Hololens for display</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--//media-body-->
+                </div>
+                <!--//project-meta-->
+                <div class="project-sections py-5">
+                    <!--//project-section-->
+                    <!--//project-section-->
+
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title">Challenges</h3>
+                        <p>The key problem that was solved was figuring out how to make requests using Unity, a cross-platform game engine. Solving this problem allowed us to bring data from the external world into our application. However, the data coming off from the traffic APIs had to be cleaned, understood and structured for a proper display in the Hololens. 
+                            To solve this problem we created a simple python-based web server to act as mediator between the Hololens app and external traffic data.</p>
+                        <div class="row mt-5">
+                            <div class="col-12 col-lg-6 mb-5">
+                                <blockquote class="twitter-tweet" data-conversation="none" data-theme="dark"><p lang="tr" dir="ltr">Relbi AR <a href="https://twitter.com/hashtag/jelbithon?src=hash&amp;ref_src=twsrc%5Etfw">#jelbithon</a> <a href="https://twitter.com/hashtag/hololens?src=hash&amp;ref_src=twsrc%5Etfw">#hololens</a> <a href="https://twitter.com/hashtag/unity?src=hash&amp;ref_src=twsrc%5Etfw">#unity</a> <a href="https://t.co/xx5mMPnJqt">pic.twitter.com/xx5mMPnJqt</a></p>&mdash; DB Hackathon (@DBHackathon) <a href="https://twitter.com/DBHackathon/status/1229024317008154624?ref_src=twsrc%5Etfw">February 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-5">
+                                <img class="img-fluid rounded" src="assets/images/relbi.jpeg" alt="image">
+                            </div>
+                        </div>
+                        
+                        
+                        <p><br>
+                            <br>
+                            By using hand gestures or scanning QR codes, requests get triggered inside the app, calling the web server and retrieving information specific to the gesture used or QR code scanned.</p>
+
+                    </div>
+                    <!--//project-section-->
+
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Tools and Services</h3>
+
+                        <div class="metrics mb-4">
+                            <div class="row">
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Microsoft Hololens</div>
+                                        <div class="metric-desc">
+                                        <p>An awesome piece of hardware with multiple sensors, cameras, advanced optics, and holographic processing technologies programmed using the mixed reality toolkit of the Unity Engine 3d.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Backend</div>
+                                        <div class="metric-desc">
+                                            <p>Python web based server programmed using FastAPI, able to call some BVG mobility partners and Google Street View API to return text or images back to the hololens.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Deployment</div>
+                                    
+                                        <div class="metric-desc">
+                                           <p>The server was deployed as a Docker container on an AWS EC2 instance.</p>
+                                      </div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Traffic Data</div>
+                                        <div class="metric-desc">The traffic data was provided by Jelbi, a BVG app that integrates into one application many mobility solutions in Berlin.</div>
+                                    </div>
+                                </div>
+                                <!--//metric-->
+                            </div>
+                            <!--//row-->
+                        </div>
+                        <!--//metrics-->
+                        It would be interesting to try integrating additional AI services into the Hololens e.g to voice-command the application or recognize places automatically.
+
+                    </div>
+                    <!--//project-section
+
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Client Testimonial</h3>
+                    </div>
+                  
+                    <div class="client-quote">
+                        <div class="quote-holder">
+                            <blockquote class="quote-content">
+                                Simon is a brilliant software engineer! Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.
+                            </blockquote>
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    
+                        <div class="source-holder">
+                            <div class="source-profile">
+                                <img src="assets/images/vor" alt="image" />
+                            </div>
+                            <div class="meta">
+                                <div class="name">James Lee</div>
+                                <div class="info">Product Manager, Amazon</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </section>
+
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container single-col-max-width">
+                <h2 class="title">Want help with your project?</h2>
+                <p>Let me know! I really enjoy working on new things.</p>
+                <div class="text-center"><a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Contact Me</a></div>
+            </div>
+            <!--//container-->
+        </section>
+        <!--//promo-section-->
+
+        <footer class="footer text-center py-4">
+            <link rel="stylesheet" type="text/css" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+            <small>Hosted with <i class="icon ion-heart"></i> by Github</small>
+        </footer>
+
+    </div>
+    <!--//main-wrapper-->
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger config-panel-hide text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item">
+                    <a data-style="assets/css/theme-1.css" href="#"></a>
+                </li>
+                <li class="theme-2  list-inline-item">
+                    <a data-style="assets/css/theme-2.css" href="#"></a>
+                </li>
+                <li class="theme-3  list-inline-item">
+                    <a data-style="assets/css/theme-3.css" href="#"></a>
+                </li>
+                <li class="theme-4  list-inline-item">
+                    <a data-style="assets/css/theme-4.css" href="#"></a>
+                </li>
+                <li class="theme-5  list-inline-item">
+                    <a data-style="assets/css/theme-5.css" href="#"></a>
+                </li>
+                <li class="theme-6  list-inline-item">
+                    <a data-style="assets/css/theme-6.css" href="#"></a>
+                </li>
+                <li class="theme-7  list-inline-item">
+                    <a data-style="assets/css/theme-7.css" href="#"></a>
+                </li>
+                <li class="theme-8  list-inline-item">
+                    <a data-style="assets/css/theme-8.css" href="#"></a>
+                </li>
+                <li class="theme-9  list-inline-item">
+                    <a data-style="assets/css/theme-9.css" href="#"></a>
+                </li>
+                <li class="theme-10  list-inline-item">
+                    <a data-style="assets/css/theme-10.css" href="#"></a>
+                </li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <!--//panel-inner-->
+    </div>
+    <!--//configure-panel-->
+
+    <!-- Javascript -->
+    <script src="assets/plugins/jquery-3.4.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Dark Mode -->
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
+    <!--Templating-->
+    <script src="assets/js/include.js"></script>
+
+
+</body>
+
+</html>
