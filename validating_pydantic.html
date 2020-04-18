@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tech Review - Painless Data Validation with Pydantic</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevCard Bootstrap 4 Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- FontAwesome JS -->
+    <script defer src="assets/fontawesome/js/all.js"></script>
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+
+
+</head>
+
+<body>
+
+    <div w3-include-html="assets/templates/header.html"></div>
+
+    <div class="main-wrapper">
+
+        <article class="blog-post px-3 py-5 p-md-5">
+            <div class="container single-col-max-width">
+                <header class="blog-post-header">
+                    <h2 class="title mb-2">Painless Data Validation with Pydantic</h2>
+                    <div class="meta mb-3"><span class="date">Published 18. April, 2020</span><span class="time">4 min read</span><span class="comment">Python</span></div>
+                </header>
+
+                <div class="blog-post-body">
+                    <figure class="blog-banner">
+                        <a href="https://made4dev.com"><img class="img-fluid" src="https://images.unsplash.com/photo-1511225317751-5c2d61819d58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=40&h=700" alt="image"></a>
+                        <figcaption class="mt-2 text-center image-caption">Image by Nathan Dumlao on Unsplash</a></figcaption>
+                    </figure>
+                    <p>Validating incoming, external data is an essential part of any data handling task. Applying validation filters for incoming data ensures that the data is clean, correct and useful. 
+                        Not applying any kind of validation and accepting user input as it is, hoping the data will be coming exactly as you need it is a poor decision. In Python, there are a variety of ways of applying filters to your data.<br>
+                    </p>
+                    <p>
+                        A common way to do it is using <code>try</code> and <code>except</code> clauses in your code. For example:
+                    </p>
+                <pre>
+<code># validating an integer
+try:
+    user_input = int(input())
+except ValueError:
+    print("Expect Whole Number")
+</code></pre>
+<p>In this case, only if the value given by the user can be converted to an integer, the variable <code>user_input</code> will be defined and can be worked with. In all other scenarios an error will be raised.
+While it can be okay to validate data in this simple manner, it can be a lot of pain if the input you are recieving consists on a lot of values. Imagine that your service is expecting to work with incoming data like this:</p>
+<pre><code>user_data = {
+        'id': 278712380,
+        'address': 'Friedrichstr. 21',
+        'planet': "Mars",
+        'items': [1,2,3,4],
+}
+</code></pre>
+<p> In this more complex and common scenario, checking that the <code>user_data</code> is a dictionary will not help you much. You will need to ensure that each of the values has the type that you are expecting. Trying to do this with <code>try</code>
+    and <code>except</code> clauses can be a lot of pain. </p>
+<p>A better approach to solve this, is to use already existing solutions, where instead of validating values one by one by checking them individually, you define a data model with the requirements that you expect.
+    For this purpose, the package pydantic offers a very compelling and easy way to do it.
+</p>
+
+                    <h3 class="mt-5 mb-3">Validating with Pydantic</h3>
+<p>In pydantic you define a data model by importing <code>BaseModel</code> and creating a class with the values you are expecting and their type. If you are not familiar with typing in Python, refer to this link for more information. To validate the <code>user_data</code> from before with pydantic, you can define a data model like the following:</p>
+<pre>
+<code>from pydantic import BaseModel
+
+class DataModel(BaseModel):
+    id: int
+    address: str
+    planet: str 
+    items: list 
+</code>
+</pre>
+<p>Now that you have defined you data model you can use it to validate your data in this manner:</p>
+<pre><code>validated_data = DataModel(**user_data)
+</code></pre>
+<p>By using <code>**user_data</code> you unpack the dictionary and "pass it through" your data model. If the types of the incoming data are all as expected, the variable <code>validated_data</code> will be defined. If any of the values has an incorrect type, an appropiate error will be returned. For example, let's modify the <code> id </code> field to see this:</p>
+<pre>
+    <code>user_data = {
+    'id': 'not an integer',
+    'address': 'Friedrichstr. 21',
+    'planet': "Mars",
+    'items': [1,2,3,4],
+    }
+# an error is raised 
+validated_data = DataModel(**user_data)
+# >> ValidationError: 1 validation error for DataModel
+# >> id value is not a valid integer (type=type_error.integer)
+</code>
+    </pre>
+    <p>As you see, the code does not run sucessfully and we recieve the expected error which is very handy. 
+        Once your data is validated, because it inherited from <code>BaseModel</code> it has two handy methods. You can directly convert into a python dictionary or into JSON format with the methods below:</p>
+
+<pre>
+<code>dictionary = validated_data.dict()
+JSON_format = validated_data.json()</code>
+</pre>
+<h3 class="mt-5 mb-3">More Granular Validation</h3>
+<p>As you saw before, we used default python types to define the requirements of our data model. In particular, we used the field <code>items</code> as a <code>list</code> type. 
+    This means our data model will only check if its a valid list but will not check the types of values included in the list.</p>
+    <p>Let's see a new example to put in perspective. Assume that you want to work with a list of integers only.</p>
+<pre>
+<code>from pydantic import BaseModel
+
+user_data = {
+    'items': [1,"x",3,"y", 2.5],
+}
+
+class DataModel(BaseModel):
+    items: list 
+
+# runs succesfully
+validated_data = DataModel(**user_data).dict()
+</code></pre>
+<p>Validating your data in this manner will not help you, becuase any valid list will succesfully pass through your filter. To solve this problem, you can use custom types from the typing package.</p>
+<pre>
+    <code>from pydantic import BaseModel
+from typing import List
+    
+user_data = {
+    'items': [1,"x",3,"y", 2.5],
+}
+    
+class DataModel(BaseModel):
+    items: List[int]
+
+# raises an error
+validated_data = DataModel(**user_data).dict()
+# >> ValidationError: 2 validation errors for DataModel 
+# >> items -> 1 value is not a valid integer (type=type_error.integer)
+## >> items -> 3 value is not a valid integer (type=type_error.integer)
+</code></pre>
+<p>
+In this version, we specified the <code>items</code> field to be a list of integers with the synthax <code>List[int]</code> solving our problem. 
+The output of pydantic is so nice that it let's you know actually which indexes were not correct (as seen above the items on indexes 1 and 3 are not integers).
+</p>
+<p>
+This same synthax (trick) using custom pydantic types can be used to solve more granular validation requirements. 
+For example, imagine that you need to work with a list of lists of float values. In this case, you can validate it like this:
+</p>
+<pre>
+    <code>from pydantic import BaseModel
+from typing import List
+    
+user_data = {
+    'items': [[2.1, 2.3, 2.6, 2.7],
+              [2.1, 2.3, 2.6, 2.7],
+              [2.1, 2.3, 'x', 2.7]]
+}
+    
+class DataModel(BaseModel):
+    items: List[List[float]]
+
+# raises an error
+validated_data = DataModel(**user_data).dict()
+# >> ValidationError: 1 validation error for DataModel
+# >> items -> 2 -> 2 value is not a valid float (type=type_error.float)
+</code></pre>
+<p>In this case, we defined that we wanted to work with a list of lists of floats using the synthax: <code>List[List[float]]</code>, solving our problem. 
+    As expected the filter does not let the data pass through, letting us know that there is an error on the third value of the third list.</p>
+
+<p>Importantly, should the data pass through succesfully, the type of the value of <code>validated_data['items']</code> will be a normal python list and not a <code>List</code> object, this is only for type checking.</p>
+<pre><code>from pydantic import BaseModel
+from typing import List
+    
+user_data = {
+    'items': [[2.1, 2.3, 2.6, 2.7],
+                [2.1, 2.3, 2.6, 2.7],
+                [2.1, 2.3, '2.6', 2.7]]
+}
+    
+class DataModel(BaseModel):
+    items: List[List[float]]
+
+# runs sucessfully
+validated_data = DataModel(**user_data).dict()
+print(type(validated_data['items']))
+# >> list</code></pre>
+<h3 class="mt-5 mb-3">Passing errors to the user</h3>
+<p>As we've seen, pydantic let's you easily validate data and let's you nicely know for which reasons it isn't valid. However, it isn't really helpful if your code stops running because of a wrong user input. What you would like to do is to return the error back to the user without interrupting the execution of your code.
+Luckily, you can easily handle this using <code>try</code> and <code>except</code> clauses, for example:
+</p>
+<pre>
+<code>from pydantic import ValidationError
+
+try:
+    validated_data = DataModel(**wrong_data)
+except ValidationError as e:
+    print(e.json())
+
+print('still working')
+# >> still working
+</code>
+</pre>
+<p> Using the code from above:</p>
+<pre><code>from pydantic import BaseModel
+from pydantic import ValidationError
+from typing import List
+    
+user_data = {
+    'items': [[2.1, 2.3, 2.6, 2.7],
+                [2.1, 2.3, 2.6, 2.7],
+                [2.1, 2.3, '2.6', 'x']]
+}
+    
+class DataModel(BaseModel):
+    items: List[List[float]]
+
+try:
+    validated_data = DataModel(**user_data).dict()
+except ValidationError as e:
+    print(e.json())
+
+# continues running code..</code></pre>
+<p>The response can then be saved and returned back to the user, without breaking the code execution.</p>
+<pre><code>[
+  {
+    "loc": [
+      "items",
+      2,
+      3
+    ],
+    "msg": "value is not a valid float",
+    "type": "type_error.float"
+  }
+]
+</code>
+</pre>
+<p>Well, I'll leave it here to keep it short. I hope you have learned something about validating data in python. This is really handy for many problems. Hopefully you can find this useful.</p>
+</div>
+
+               
+                <!--//blog-comments-section-->
+
+            </div>
+            <!--//container-->
+        </article>
+        <!--//promo-section-->
+
+        <footer class="footer text-center py-4">
+            <link rel="stylesheet" type="text/css" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+            <small>Hosted with <i class="icon ion-heart"></i> by Github</small>
+        </footer>
+
+    </div>
+    <!--//main-wrapper-->
+
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger config-panel-hide text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item">
+                    <a data-style="assets/css/theme-1.css" href="#"></a>
+                </li>
+                <li class="theme-2  list-inline-item">
+                    <a data-style="assets/css/theme-2.css" href="#"></a>
+                </li>
+                <li class="theme-3  list-inline-item">
+                    <a data-style="assets/css/theme-3.css" href="#"></a>
+                </li>
+                <li class="theme-4  list-inline-item">
+                    <a data-style="assets/css/theme-4.css" href="#"></a>
+                </li>
+                <li class="theme-5  list-inline-item">
+                    <a data-style="assets/css/theme-5.css" href="#"></a>
+                </li>
+                <li class="theme-6  list-inline-item">
+                    <a data-style="assets/css/theme-6.css" href="#"></a>
+                </li>
+                <li class="theme-7  list-inline-item">
+                    <a data-style="assets/css/theme-7.css" href="#"></a>
+                </li>
+                <li class="theme-8  list-inline-item">
+                    <a data-style="assets/css/theme-8.css" href="#"></a>
+                </li>
+                <li class="theme-9  list-inline-item">
+                    <a data-style="assets/css/theme-9.css" href="#"></a>
+                </li>
+                <li class="theme-10  list-inline-item">
+                    <a data-style="assets/css/theme-10.css" href="#"></a>
+                </li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <!--//panel-inner-->
+    </div>
+    <!--//configure-panel-->
+
+
+
+    <!-- Javascript -->
+    <script src="assets/plugins/jquery-3.4.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Page Specific JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/blog.js"></script>
+
+    <!-- Dark Mode -->
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
+    <!--Templating-->
+    <script src="assets/js/include.js"></script>
+
+</body>
+
+</html>
